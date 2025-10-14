@@ -7,7 +7,7 @@ body {
   padding: 0;
 }
 
-/*navigation*/
+/*this is for my navigation bar*/
 nav {
   background-color: #e0e0e0;
   color: #333;
@@ -26,12 +26,12 @@ nav a:hover {
   text-decoration: underline;
 }
 
-/*content goes here */
+/*the actual main content goes here */
 main {
   padding: 24px;
 }
 
-/* this is just 4 the footer*/
+/* this is just for the footer*/
 footer {
   background-color: #444;
   color: rgba(255, 255, 255, 0.658);
