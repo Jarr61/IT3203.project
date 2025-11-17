@@ -22,7 +22,7 @@ nav a {
 }
 
 nav a:hover {
-    color: #0007acc
+  color: #0007ac;
   text-decoration: underline;
 }
 
@@ -37,4 +37,31 @@ footer {
   color: rgba(255, 255, 255, 0.658);
   text-align: center;
   padding: 12px;
+}
+/*Quiz layout */
+main {
+  max-width: 750px;
+  margin:24px auto;
+  padding: 0 16px;
+}
+
+#quizform {
+  background-color: #ffffff;
+  border: 1px;
+  padding: 16px;
+  border-radius: 6px;
+}
+
+fieldset {
+  margin-bottom: 16px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+#results {
+  margin-top:  16px;
+  background-color: #ffffff;
+  border: 1px;
+  padding: 16px;
+  border-radius: 6px;
 }

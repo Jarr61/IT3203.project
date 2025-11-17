@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+<!--meta tag for devices-->
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Flexbox Basics</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+    <h1>Hello World</h1>
+<!--navigation bar-->
+<nav>
+    <a href="index.html">Home</a> |
+    <a href="topic1.html">Flexbox</a> |
+    <a href="topic2.html">Grid</a> |
+    <a href="concepts.html">Key Concepts</a> |
+    <a href="references.html">References</a> |
+    <a href="about.html">About</a>
+    <a href="quiz.html">Quiz</a>
+</nav>
+<main>
+    <h1>Quiz on Flexbox and Grid</h1>
+    <form id="quizForm">
+
+  <fieldset>
+    <legend> 1. Fill in the blank</legend>
+    <label for="q1">Which CSS element turns flexbox on for a container?:</label>
+    <input type="text" id="q1" name="q1"><br><br>
+  </fieldset>
+
+    <fieldset>
+      <legend> 2. Flexbox is mainly used for:</legend>
+      <label><input type="radio" name="q2" value="1"> One-dimensional layout, with rows OR columns</label><br>
+      <label><input type="radio" name="q2" value="2"> Two-dimensional layout, with rows OR columns</label><br>
+      <label><input type="radio" name="q2" value="3"> Animations</label><br>
+      <label><input type="radio" name="q2" value="4"> Changing colors</label><br><br>
+    </fieldset>
+    <br>
+
+
+    <fieldset>
+      <legend> 3. Which Flexbox setting controls spacing between items?</legend>
+      <label><input type="radio" name="q3" value="1"> space-around</label><br>
+      <label><input type="radio" name="q3" value="2"> justify-content</label><br>
+      <label><input type="radio" name="q3" value="3"> flex-wrap</label><br>
+      <label><input type="radio" name="q3" value="4"> border-spacing</label><br><br>
+    </fieldset>
+    <br>
+
+    <fieldset>
+      <legend> 4. Which of the following are Grid properties? (Select all that apply)</legend>
+      <label><input type="checkbox" name="q4" value="Columns"> Columns</label><br>
+      <label><input type="checkbox" name="q4" value="Rows"> Rows</label><br>
+      <label><input type="checkbox" name="q4" value="flex-wrap"> flex-wrap</label><br>
+      <label><input type="checkbox" name="q4" value="Gap"> Gap</label><br><br>
+    </fieldset>
+    <br>
+
+    <fieldset>
+      <legend> 5. What is the most approporiate use of Grid?</legend>
+      <label><input type="radio" name="q5" value="1"> One row layout</label><br>
+      <label><input type="radio" name="q5" value="2"> Multiple row/column layout</label><br>
+      <label><input type="radio" name="q5" value="3"> Animations</label><br>
+      <label><input type="radio" name="q5" value="4"> Spacing between borders</label><br><br>
+    </fieldset>
+    <br>
+    
+    <input type="submit" value="Submit Quiz">
+    <input type="reset" value="Reset Quiz" id="resetBtn">
+
+    </form>
+
+  <br>
+<!-- results -->
+ <div id="results"></div>
+
+
+</main>
+
+<footer>
+  <small>Class project • 
+  <a href="https://ksuweb.github.io/IT3203/" target="_blank" rel="noopener">Course site</a>
+  </small>
+</footer>
+
+<!-- javascript -->
+
+<script> 
+document.getElementById("quizForm").addEventListener("submit", function(e) {
+  e.preventDefault(); // prevents refreshing the page, allows page to remain on screen
+
+
+  let score = 0;
+  let output = "<h2>Results</h2>"
+
+  const a1= "display: flex";
+  const a2= "1";
+  const a3= "2";
+  const a4 = ["Columnns", "Rows", "Gaps"];
+  const a5 = "2";
+
+  //Question 1 js
+  const q1 = document.getElementById("q1").value.trim().toLowerCase();
+  let correctQ1 = (q1.includes("display") && q1.includes("flex"));
+  if (correctQ1) score++;
+  output += `<p><strong>Q1:</strong> ${correctQ1 ? "Correct" : "Incorrect"}<br>
+  <em>Correct answer:</em> display: flex;</p>`;
+
+  // Question 2 js
+  const q2 = document.querySelector("input[name='q2']:checked");
+  let correctQ2 = q2 && q2.value === a2;
+  if (correctQ2) score++;
+  output += `<p><strong>Q2:</strong> ${correctQ2 ? "Correct" : "Incorrect"}<br>
+  <em>Correct answer:</em> One-dimensional layout, with rows OR columns</p>`;
+
+  // Question 3 js
+  const q3 = document.querySelector("input[name='q3']:checked");
+  let correctQ3 = q3 && q3.value === a3;
+  if (correctQ3) score++;
+  output += `<p><strong>Q3:</strong> ${correctQ3 ? "Correct" : "Incorrect"}<br>
+  <em>Correct answer:</em> justify-content</p>`;
+
+  // Question 4 js
+  const q4 = Array.from(document.querySelectorAll("input[name='q4']:checked"))
+                  .map(x => x.value);
+  let correctQ4 = (q4.length === a4.length &&
+                   a4.every(x => q4.includes(x)));
+  if (correctQ4) score++;
+  output += `<p><strong>Q4:</strong> ${correctQ4 ? "Correct" : "Incorrect"}<br>
+  <em>Correct answers:</em> Columns, Rows, Gap</p>`;
+
+  // Question 5 js
+  const q5 = document.querySelector("input[name='q5']:checked");
+  let correctQ5 = q5 && q5.value === a5;
+  if (correctQ5) score++;
+  output += `<p><strong>Q5:</strong> ${correctQ5 ? "Correct" : "Incorrect"}<br>
+  <em>Correct answer:</em> Multiple row/column layout</p>`;
+
+  // Final result
+  output += `<h3>Your Score: ${score}/5</h3>`;
+  output += score >= 3 
+    ? `<p style="color:green;"><strong>PASS</strong></p>`
+    : `<p style="color:red;"><strong>FAIL</strong></p>`;
+
+  document.getElementById("results").innerHTML = output;
+  });
+
+document.getElementById("resetBtn").addEventListener("click", function() {
+  document.getElementById("results").innerHTML = "";
+});
+</script>
+</body>
+</html>
